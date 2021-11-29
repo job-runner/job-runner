@@ -1,0 +1,8 @@
+/tests/                 export-ignore
+/phpunit.xml.dist       export-ignore
+/psalm.xml              export-ignore
+/docker-compose.yml     export-ignore
+/Makefile               export-ignore
+/infection.json         export-ignore
+/phpstan.neon           export-ignore
+/.*                     export-ignore

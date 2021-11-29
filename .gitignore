@@ -1,0 +1,7 @@
+.idea
+vendor
+logs
+.phpcs-cache
+.phpunit.result.cache
+test.php
+coverage

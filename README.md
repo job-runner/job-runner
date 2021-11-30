@@ -1,6 +1,11 @@
 # JobRunner
 
 [![Build Status](https://github.com/job-runner/job-runner/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/job-runner/job-runner/actions/workflows/continuous-integration.yml)
+[![Type Coverage](https://shepherd.dev/github/job-runner/job-runner/coverage.svg)](https://shepherd.dev/github/job-runner/job-runner)
+[![Type Coverage](https://shepherd.dev/github/job-runner/job-runner/level.svg)](https://shepherd.dev/github/job-runner/job-runner)
+[![Latest Stable Version](https://poser.pugx.org/job-runner/job-runner/v/stable)](https://packagist.org/packages/job-runner/job-runner)
+[![License](https://poser.pugx.org/job-runner/job-runner/license)](https://packagist.org/packages/job-runner/job-runner)
+
 
 # Install
 

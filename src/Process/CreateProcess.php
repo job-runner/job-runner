@@ -7,6 +7,7 @@ namespace JobRunner\JobRunner\Process;
 use Cron\CronExpression;
 use JobRunner\JobRunner\Event\JobEventRunner;
 use JobRunner\JobRunner\Exceptions\LockedJob;
+use JobRunner\JobRunner\Exceptions\NotDueJob;
 use JobRunner\JobRunner\Job\Job;
 use JobRunner\JobRunner\Job\JobList;
 use JobRunner\JobRunner\Process\Dto\ProcessAndLock;
@@ -32,17 +33,13 @@ class CreateProcess
         $jobsToRun = new ProcessAndLockList();
 
         foreach ($jobs->getList() as $job) {
-            if (! (new CronExpression($job->getCronExpression()))->isDue()) {
-                $this->jobEventRunner->notDue($job);
-
-                continue;
-            }
-
             try {
                 $jobsToRun->push($this->startJob($job));
                 $this->jobEventRunner->start($job);
             } catch (LockedJob) {
                 $this->jobEventRunner->isLocked($job);
+            } catch (NotDueJob) {
+                $this->jobEventRunner->notDue($job);
             }
         }
 
@@ -51,6 +48,10 @@ class CreateProcess
 
     private function startJob(Job $job): ProcessAndLock
     {
+        if (! (new CronExpression($job->getCronExpression()))->isDue()) {
+            throw NotDueJob::fromJob($job);
+        }
+
         $lock = $this->lock->createLock($job->getName(), $job->getTtl(), $job->isAutoRelease());
 
         if (! $lock->acquire(false)) {

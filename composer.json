@@ -13,15 +13,14 @@
   "require": {
     "php": "^8.0",
     "dragonmantank/cron-expression": "^3.0",
-    "symfony/lock": "^5.0",
-    "symfony/process": "^5.3.7"
+    "symfony/lock": "^5.0 || ^6.0",
+    "symfony/process": "^5.3.7 || ^6.0"
   },
   "require-dev": {
     "doctrine/coding-standard": "^9.0",
     "infection/infection": "^0.25.3",
     "phpunit/phpunit": "^9.5.10",
     "psalm/plugin-phpunit": "^0.16.1",
-    "symfony/rocket-chat-notifier": "^5.3.10",
     "vimeo/psalm": "^4.13.1"
   },
   "autoload": {

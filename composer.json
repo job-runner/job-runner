@@ -14,7 +14,7 @@
     "php": "^8.0",
     "dragonmantank/cron-expression": "^3.0",
     "symfony/lock": "^5.0 || ^6.0",
-    "symfony/process": "^5.3.7 || ^6.0"
+    "symfony/process": "^5.4.2"
   },
   "require-dev": {
     "doctrine/coding-standard": "^9.0",

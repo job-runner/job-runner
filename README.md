@@ -163,8 +163,8 @@ use Symfony\Component\Notifier\Notifier;
 require 'vendor/autoload.php';
 
 
-$rocket = new RocketChatTransport('Bekn57knHAsi3w8vj/qjgT4PJ6cPoxjXTEDxjegfpp4JdQTd6xExKk5pMKKNxnWbfM', '#test');
-$rocket->setHost('chat.cube43.fr');
+$rocket = new RocketChatTransport('mytoken', '#mychannel');
+$rocket->setHost('chat.myhost.com');
 $chat     = new ChatChannel($rocket);
 $notifier = new Notifier(['chat' => $chat]);
 

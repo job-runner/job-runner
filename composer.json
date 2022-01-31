@@ -13,7 +13,7 @@
   "require": {
     "php": "^8.0",
     "dragonmantank/cron-expression": "^3.3",
-    "symfony/lock": "^5.0 || ^6.0",
+    "symfony/lock": "^5.4.3",
     "symfony/process": "^5.3.7 || ^6.0"
   },
   "require-dev": {

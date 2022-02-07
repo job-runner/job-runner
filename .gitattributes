@@ -6,3 +6,7 @@
 /infection.json         export-ignore
 /phpstan.neon           export-ignore
 /.*                     export-ignore
+/LICENSE                export-ignore
+/phpcs.xml.dist         export-ignore
+/phpunit.xml            export-ignore
+/README.md              export-ignore

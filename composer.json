@@ -17,7 +17,7 @@
     "symfony/process": "^6.0"
   },
   "require-dev": {
-    "doctrine/coding-standard": "^9.0",
+    "doctrine/coding-standard": "^10.0",
     "infection/infection": "^0.26.15",
     "phpunit/phpunit": "^9.5.25",
     "psalm/plugin-phpunit": "^0.17.0",

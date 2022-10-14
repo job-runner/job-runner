@@ -9,19 +9,13 @@ use Symfony\Component\Process\Process;
 
 class PhpJob implements Job
 {
-    private string $cronExpression;
-    private string $name;
-    private int $ttl;
-    private bool $autoRelease;
-    private string $script;
-
-    public function __construct(string $script, string $cronExpression, string $name, int $ttl = 300, bool $autoRelease = true)
-    {
-        $this->cronExpression = $cronExpression;
-        $this->name           = $name;
-        $this->ttl            = $ttl;
-        $this->autoRelease    = $autoRelease;
-        $this->script         = $script;
+    public function __construct(
+        private readonly string $script,
+        private readonly string $cronExpression,
+        private readonly string $name,
+        private readonly int $ttl = 300,
+        private readonly bool $autoRelease = true,
+    ) {
     }
 
     public function getProcess(): Process

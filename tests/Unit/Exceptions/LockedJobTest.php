@@ -8,9 +8,7 @@ use JobRunner\JobRunner\Exceptions\LockedJob;
 use JobRunner\JobRunner\Job\Job;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JobRunner\JobRunner\Exceptions\LockedJob
- */
+/** @covers \JobRunner\JobRunner\Exceptions\LockedJob */
 class LockedJobTest extends TestCase
 {
     public function testOk(): void

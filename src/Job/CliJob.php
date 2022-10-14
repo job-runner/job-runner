@@ -8,19 +8,16 @@ use Symfony\Component\Process\Process;
 
 class CliJob implements Job
 {
-    private string $command;
-    private string $cronExpression;
     private string $name;
-    private int $ttl;
-    private bool $autoRelease;
 
-    public function __construct(string $command, string $cronExpression, ?string $name = null, int $ttl = 300, bool $autoRelease = true)
-    {
-        $this->command        = $command;
-        $this->cronExpression = $cronExpression;
-        $this->name           = $name ?? $command;
-        $this->ttl            = $ttl;
-        $this->autoRelease    = $autoRelease;
+    public function __construct(
+        private readonly string $command,
+        private readonly string $cronExpression,
+        string|null $name = null,
+        private readonly int $ttl = 300,
+        private readonly bool $autoRelease = true,
+    ) {
+        $this->name = $name ?? $command;
     }
 
     public function getProcess(): Process

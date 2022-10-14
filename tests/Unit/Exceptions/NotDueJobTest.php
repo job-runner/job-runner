@@ -8,9 +8,7 @@ use JobRunner\JobRunner\Exceptions\NotDueJob;
 use JobRunner\JobRunner\Job\Job;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JobRunner\JobRunner\Exceptions\NotDueJob
- */
+/** @covers \JobRunner\JobRunner\Exceptions\NotDueJob */
 class NotDueJobTest extends TestCase
 {
     public function testOk(): void

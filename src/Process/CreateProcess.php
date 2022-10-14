@@ -14,18 +14,13 @@ use JobRunner\JobRunner\Process\Dto\ProcessAndLock;
 use JobRunner\JobRunner\Process\Dto\ProcessAndLockList;
 use Symfony\Component\Lock\LockFactory;
 
-/**
- * @internal
- */
+/** @internal */
 class CreateProcess
 {
-    private LockFactory $lock;
-    private JobEventRunner $jobEventRunner;
-
-    public function __construct(LockFactory $lock, JobEventRunner $jobEventRunner)
-    {
-        $this->lock           = $lock;
-        $this->jobEventRunner = $jobEventRunner;
+    public function __construct(
+        private readonly LockFactory $lock,
+        private readonly JobEventRunner $jobEventRunner,
+    ) {
     }
 
     public function __invoke(JobList $jobs): ProcessAndLockList

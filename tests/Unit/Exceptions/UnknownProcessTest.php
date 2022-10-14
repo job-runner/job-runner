@@ -9,9 +9,7 @@ use JobRunner\JobRunner\Job\Job;
 use JobRunner\JobRunner\Process\Dto\ProcessAndLock;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JobRunner\JobRunner\Exceptions\UnknownProcess
- */
+/** @covers \JobRunner\JobRunner\Exceptions\UnknownProcess */
 class UnknownProcessTest extends TestCase
 {
     public function testOk(): void

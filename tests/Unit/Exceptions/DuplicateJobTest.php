@@ -8,9 +8,7 @@ use JobRunner\JobRunner\Exceptions\DuplicateJob;
 use JobRunner\JobRunner\Job\Job;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JobRunner\JobRunner\Exceptions\DuplicateJob
- */
+/** @covers \JobRunner\JobRunner\Exceptions\DuplicateJob */
 class DuplicateJobTest extends TestCase
 {
     public function testOk(): void

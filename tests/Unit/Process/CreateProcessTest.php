@@ -13,9 +13,7 @@ use Symfony\Component\Lock\LockFactory;
 use Symfony\Component\Lock\LockInterface;
 use Symfony\Component\Process\Process;
 
-/**
- * @covers \JobRunner\JobRunner\Process\CreateProcess
- */
+/** @covers \JobRunner\JobRunner\Process\CreateProcess */
 class CreateProcessTest extends TestCase
 {
     public function testNoNeedToRun(): void

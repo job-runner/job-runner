@@ -34,8 +34,22 @@ require 'vendor/autoload.php';
 
 $jobList = new JobList();
 $jobList->push(new CliJob('php ' . __DIR__ . '/tutu.php', '* * * * *'));
+$jobList->push(new CliJob('php ' . __DIR__ . '/tutu2.php', '* * * * *'));
 
 CronJobRunner::create()->run($jobList);
+
+// or
+
+CronJobRunner::create()->run(JobList::fromArray([
+    [
+        'command' => 'php ' . __DIR__ . '/tutu.php',
+        'cronExpression' => '* * * * *',
+    ],[
+    [
+        'command' => 'php ' . __DIR__ . '/tutu2.php',
+        'cronExpression' => '* * * * *',
+    ]
+]));
 
 ````
 

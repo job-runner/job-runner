@@ -8,16 +8,11 @@ use JobRunner\JobRunner\Event\JobEventRunner;
 use JobRunner\JobRunner\Process\Dto\ProcessAndLock;
 use JobRunner\JobRunner\Process\Dto\ProcessAndLockList;
 
-/**
- * @internal
- */
+/** @internal */
 class WaitForJobsToEnd
 {
-    private JobEventRunner $eventRunner;
-
-    public function __construct(JobEventRunner $eventRunner)
+    public function __construct(private JobEventRunner $eventRunner)
     {
-        $this->eventRunner = $eventRunner;
     }
 
     public function __invoke(ProcessAndLockList $jobsToRun): void

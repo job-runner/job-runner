@@ -15,18 +15,12 @@ use Symfony\Component\Lock\Store\FlockStore;
 
 final class CronJobRunner implements JobRunner
 {
-    private CreateProcess $createProcess;
-    private WaitForJobsToEnd $waitForJobsToEnd;
-    private PersistingStoreInterface $persistingStore;
     /** @var array<array-key, JobEvent> */
     private array $jobEvent;
 
-    public function __construct(CreateProcess $createProcess, WaitForJobsToEnd $waitForJobsToEnd, PersistingStoreInterface $persistingStore, JobEvent ...$jobEvent)
+    public function __construct(private CreateProcess $createProcess, private WaitForJobsToEnd $waitForJobsToEnd, private PersistingStoreInterface $persistingStore, JobEvent ...$jobEvent)
     {
-        $this->createProcess    = $createProcess;
-        $this->waitForJobsToEnd = $waitForJobsToEnd;
-        $this->persistingStore  = $persistingStore;
-        $this->jobEvent         = $jobEvent;
+        $this->jobEvent = $jobEvent;
     }
 
     public static function create(): self
@@ -36,7 +30,7 @@ final class CronJobRunner implements JobRunner
         return new self(
             new CreateProcess(new LockFactory($persistingStore), new JobEventRunner()),
             new WaitForJobsToEnd(new JobEventRunner()),
-            $persistingStore
+            $persistingStore,
         );
     }
 
@@ -50,7 +44,7 @@ final class CronJobRunner implements JobRunner
             new CreateProcess(new LockFactory($this->persistingStore), $jobEventRunner),
             new WaitForJobsToEnd($jobEventRunner),
             $this->persistingStore,
-            ...$this->jobEvent
+            ...$this->jobEvent,
         );
     }
 
@@ -62,7 +56,7 @@ final class CronJobRunner implements JobRunner
             new CreateProcess(new LockFactory($persistingStore), $jobEventRunner),
             new WaitForJobsToEnd($jobEventRunner),
             $persistingStore,
-            ...$this->jobEvent
+            ...$this->jobEvent,
         );
     }
 

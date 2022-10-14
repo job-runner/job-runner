@@ -8,20 +8,14 @@ use JobRunner\JobRunner\Job\Job;
 use Symfony\Component\Lock\LockInterface;
 use Symfony\Component\Process\Process;
 
-/**
- * @internal
- */
+/** @internal */
 class ProcessAndLock
 {
-    private LockInterface $lock;
-    private Process $process;
-    private Job $job;
-
-    public function __construct(LockInterface $lock, Process $process, Job $job)
-    {
-        $this->lock    = $lock;
-        $this->process = $process;
-        $this->job     = $job;
+    public function __construct(
+        private readonly LockInterface $lock,
+        private readonly Process $process,
+        private readonly Job $job,
+    ) {
     }
 
     public function getLock(): LockInterface

@@ -15,9 +15,7 @@ use JobRunner\JobRunner\Process\WaitForJobsToEnd;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Lock\PersistingStoreInterface;
 
-/**
- * @covers \JobRunner\JobRunner\CronJobRunner
- */
+/** @covers \JobRunner\JobRunner\CronJobRunner */
 class CronJobRunnerTest extends TestCase
 {
     public function testOk(): void

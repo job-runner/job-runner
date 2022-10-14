@@ -11,9 +11,7 @@ use JobRunner\JobRunner\Process\Dto\ProcessAndLock;
 use JobRunner\JobRunner\Process\Dto\ProcessAndLockList;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JobRunner\JobRunner\Process\Dto\ProcessAndLockList
- */
+/** @covers \JobRunner\JobRunner\Process\Dto\ProcessAndLockList */
 class ProcessAndLockListTest extends TestCase
 {
     public function testOk(): void

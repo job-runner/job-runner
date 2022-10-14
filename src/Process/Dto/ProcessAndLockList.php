@@ -10,9 +10,7 @@ use JobRunner\JobRunner\Exceptions\UnknownProcess;
 use function array_key_exists;
 use function array_values;
 
-/**
- * @internal
- */
+/** @internal */
 class ProcessAndLockList
 {
     /** @var array<string, ProcessAndLock> */

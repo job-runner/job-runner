@@ -13,19 +13,16 @@ class CliJob implements Job
     private const TTL_DEFAULT_VALUE          = 300;
     private const AUTO_RELEASE_DEFAULT_VALUE = true;
 
-    private string $command;
-    private string $cronExpression;
     private string $name;
-    private int $ttl;
-    private bool $autoRelease;
 
-    public function __construct(string $command, string $cronExpression, ?string $name = null, int $ttl = self::TTL_DEFAULT_VALUE, bool $autoRelease = self::AUTO_RELEASE_DEFAULT_VALUE)
-    {
-        $this->command        = $command;
-        $this->cronExpression = $cronExpression;
-        $this->name           = $name ?? $command;
-        $this->ttl            = $ttl;
-        $this->autoRelease    = $autoRelease;
+    public function __construct(
+        private readonly string $command,
+        private readonly string $cronExpression,
+        string|null $name = null,
+        private readonly int $ttl = self::TTL_DEFAULT_VALUE,
+        private readonly bool $autoRelease = self::AUTO_RELEASE_DEFAULT_VALUE,
+    ) {
+        $this->name = $name ?? $command;
     }
 
     public function getProcess(): Process

@@ -39,9 +39,7 @@ class JobList
         return array_values($this->jobs);
     }
 
-    /**
-     * @param array<array-key, array{command : string, cronExpression : string, name? : string, ttl? : int, autoRelease? : bool}> $jobs
-     */
+    /** @param array<array-key, array{command : string, cronExpression : string, name? : string, ttl? : int, autoRelease? : bool}> $jobs */
     public static function fromArray(array $jobs): self
     {
         return new self(...array_map(static function (array $job) {

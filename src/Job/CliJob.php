@@ -6,15 +6,20 @@ namespace JobRunner\JobRunner\Job;
 
 use Symfony\Component\Process\Process;
 
+use function array_key_exists;
+
 class CliJob implements Job
 {
+    private const TTL_DEFAULT_VALUE          = 300;
+    private const AUTO_RELEASE_DEFAULT_VALUE = true;
+
     private string $command;
     private string $cronExpression;
     private string $name;
     private int $ttl;
     private bool $autoRelease;
 
-    public function __construct(string $command, string $cronExpression, ?string $name = null, int $ttl = 300, bool $autoRelease = true)
+    public function __construct(string $command, string $cronExpression, ?string $name = null, int $ttl = self::TTL_DEFAULT_VALUE, bool $autoRelease = self::AUTO_RELEASE_DEFAULT_VALUE)
     {
         $this->command        = $command;
         $this->cronExpression = $cronExpression;
@@ -46,5 +51,15 @@ class CliJob implements Job
     public function isAutoRelease(): bool
     {
         return $this->autoRelease;
+    }
+
+    /** @inheritDoc */
+    public static function fromArray(array $job): self
+    {
+        $name        = array_key_exists('name', $job) ? $job['name'] : null;
+        $ttl         = array_key_exists('ttl', $job) ? $job['ttl'] : self::TTL_DEFAULT_VALUE;
+        $autoRelease = array_key_exists('autoRelease', $job) ? $job['autoRelease'] : self::AUTO_RELEASE_DEFAULT_VALUE;
+
+        return new self($job['command'], $job['cronExpression'], $name, $ttl, $autoRelease);
     }
 }

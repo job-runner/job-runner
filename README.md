@@ -26,7 +26,6 @@ This cron job manager is inspired by https://github.com/jobbyphp/jobby but with 
 declare(strict_types=1);
 
 use JobRunner\JobRunner\Job\CliJob;
-use JobRunner\JobRunner\Job\PhpJob;
 use JobRunner\JobRunner\Job\JobList;
 use JobRunner\JobRunner\CronJobRunner;
 
@@ -35,7 +34,6 @@ require 'vendor/autoload.php';
 
 $jobList = new JobList();
 $jobList->push(new CliJob('php ' . __DIR__ . '/tutu.php', '* * * * *'));
-$jobList->push(new PhpJob('<?php echo "yo";', '* * * * *', 'php job'));
 
 CronJobRunner::create()->run($jobList);
 
@@ -49,7 +47,6 @@ CronJobRunner::create()->run($jobList);
 declare(strict_types=1);
 
 use JobRunner\JobRunner\Job\CliJob;
-use JobRunner\JobRunner\Job\PhpJob;
 use JobRunner\JobRunner\Job\JobList;
 use JobRunner\JobRunner\CronJobRunner;
 
@@ -59,7 +56,6 @@ require 'vendor/autoload.php';
 $mySymfonyLockerStore = new \Symfony\Component\Lock\Store\MongoDbStore();
 $jobList = new JobList();
 $jobList->push(new CliJob('php ' . __DIR__ . '/tutu.php', '* * * * *'));
-$jobList->push(new PhpJob('<?php echo "yo";', '* * * * *', 'php job'));
 
 CronJobRunner::create()->withPersistingStore($mySymfonyLockerStore)->run($jobList);
 
@@ -85,7 +81,6 @@ there is various of event you can listen
 declare(strict_types=1);
 
 use JobRunner\JobRunner\Job\CliJob;
-use JobRunner\JobRunner\Job\PhpJob;
 use JobRunner\JobRunner\Job\JobList;
 use JobRunner\JobRunner\CronJobRunner;
 use JobRunner\JobRunner\PsrLog\PsrLogEventListener;
@@ -96,7 +91,6 @@ require 'vendor/autoload.php';
 $myLogger = new \Psr\Log\NullLogger();
 $jobList = new JobList();
 $jobList->push(new CliJob('php ' . __DIR__ . '/tutu.php', '* * * * *'));
-$jobList->push(new PhpJob('<?php echo "yo";', '* * * * *', 'php job'));
 
 CronJobRunner::create()->withEventListener(new PsrLogEventListener($myLogger));->run($jobList);
 

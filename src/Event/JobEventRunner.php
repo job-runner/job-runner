@@ -6,10 +6,12 @@ namespace JobRunner\JobRunner\Event;
 
 use JobRunner\JobRunner\Job\Job;
 
+use function array_filter;
+
 class JobEventRunner implements JobStartEvent, JobSuccessEvent, JobFailEvent, JobNotDueEvent, JobIsLockedEvent
 {
     /** @var array<array-key, JobEvent> */
-    private array $jobEvent;
+    private readonly array $jobEvent;
 
     public function __construct(JobEvent ...$jobEvent)
     {
@@ -54,11 +56,7 @@ class JobEventRunner implements JobStartEvent, JobSuccessEvent, JobFailEvent, Jo
     /** @param class-string $classNam e*/
     private function apply(string $className, callable $callable): void
     {
-        foreach ($this->jobEvent as $event) {
-            if (! ($event instanceof $className)) {
-                continue;
-            }
-
+        foreach (array_filter($this->jobEvent, static fn (JobEvent $event) => $event instanceof $className) as $event) {
             $callable($event);
         }
     }

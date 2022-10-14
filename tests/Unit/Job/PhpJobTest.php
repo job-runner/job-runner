@@ -7,9 +7,7 @@ namespace JobRunner\JobRunner\Tests\Unit\Job;
 use JobRunner\JobRunner\Job\PhpJob;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JobRunner\JobRunner\Job\PhpJob
- */
+/** @covers \JobRunner\JobRunner\Job\PhpJob */
 class PhpJobTest extends TestCase
 {
     public function testOkWithDefaultValue(): void

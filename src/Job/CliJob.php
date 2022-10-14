@@ -10,8 +10,13 @@ class CliJob implements Job
 {
     private string $name;
 
-    public function __construct(private string $command, private string $cronExpression, string|null $name = null, private int $ttl = 300, private bool $autoRelease = true)
-    {
+    public function __construct(
+        private readonly string $command,
+        private readonly string $cronExpression,
+        string|null $name = null,
+        private readonly int $ttl = 300,
+        private readonly bool $autoRelease = true,
+    ) {
         $this->name = $name ?? $command;
     }
 

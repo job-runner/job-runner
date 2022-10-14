@@ -9,9 +9,7 @@ use JobRunner\JobRunner\Job\CliJob;
 use JobRunner\JobRunner\Job\JobList;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @coversNothing
- */
+/** @coversNothing */
 class TestCliJob extends TestCase
 {
     public function testOk(): void

@@ -10,9 +10,7 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\Lock\LockInterface;
 use Symfony\Component\Process\Process;
 
-/**
- * @covers \JobRunner\JobRunner\Process\Dto\ProcessAndLock
- */
+/** @covers \JobRunner\JobRunner\Process\Dto\ProcessAndLock */
 class ProcessAndLockTest extends TestCase
 {
     public function testOk(): void

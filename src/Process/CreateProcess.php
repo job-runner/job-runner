@@ -17,8 +17,10 @@ use Symfony\Component\Lock\LockFactory;
 /** @internal */
 class CreateProcess
 {
-    public function __construct(private LockFactory $lock, private JobEventRunner $jobEventRunner)
-    {
+    public function __construct(
+        private readonly LockFactory $lock,
+        private readonly JobEventRunner $jobEventRunner,
+    ) {
     }
 
     public function __invoke(JobList $jobs): ProcessAndLockList

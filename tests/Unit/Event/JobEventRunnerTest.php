@@ -13,9 +13,7 @@ use JobRunner\JobRunner\Event\JobSuccessEvent;
 use JobRunner\JobRunner\Job\Job;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JobRunner\JobRunner\Event\JobEventRunner
- */
+/** @covers \JobRunner\JobRunner\Event\JobEventRunner */
 class JobEventRunnerTest extends TestCase
 {
     public function testOk(): void

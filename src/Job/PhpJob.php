@@ -9,8 +9,13 @@ use Symfony\Component\Process\Process;
 
 class PhpJob implements Job
 {
-    public function __construct(private string $script, private string $cronExpression, private string $name, private int $ttl = 300, private bool $autoRelease = true)
-    {
+    public function __construct(
+        private readonly string $script,
+        private readonly string $cronExpression,
+        private readonly string $name,
+        private readonly int $ttl = 300,
+        private readonly bool $autoRelease = true,
+    ) {
     }
 
     public function getProcess(): Process

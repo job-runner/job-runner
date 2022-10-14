@@ -13,9 +13,7 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\Lock\LockInterface;
 use Symfony\Component\Process\Process;
 
-/**
- * @covers \JobRunner\JobRunner\Process\WaitForJobsToEnd
- */
+/** @covers \JobRunner\JobRunner\Process\WaitForJobsToEnd */
 class WaitForJobsToEndTest extends TestCase
 {
     public function testOkWithTwoElements(): void

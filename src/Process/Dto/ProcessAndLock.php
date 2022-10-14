@@ -11,8 +11,11 @@ use Symfony\Component\Process\Process;
 /** @internal */
 class ProcessAndLock
 {
-    public function __construct(private LockInterface $lock, private Process $process, private Job $job)
-    {
+    public function __construct(
+        private readonly LockInterface $lock,
+        private readonly Process $process,
+        private readonly Job $job,
+    ) {
     }
 
     public function getLock(): LockInterface

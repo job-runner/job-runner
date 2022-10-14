@@ -18,8 +18,12 @@ final class CronJobRunner implements JobRunner
     /** @var array<array-key, JobEvent> */
     private array $jobEvent;
 
-    public function __construct(private CreateProcess $createProcess, private WaitForJobsToEnd $waitForJobsToEnd, private PersistingStoreInterface $persistingStore, JobEvent ...$jobEvent)
-    {
+    public function __construct(
+        private readonly CreateProcess $createProcess,
+        private readonly WaitForJobsToEnd $waitForJobsToEnd,
+        private readonly PersistingStoreInterface $persistingStore,
+        JobEvent ...$jobEvent,
+    ) {
         $this->jobEvent = $jobEvent;
     }
 

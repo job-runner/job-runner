@@ -13,16 +13,13 @@ class CliJob implements Job
     private const TTL_DEFAULT_VALUE          = 300;
     private const AUTO_RELEASE_DEFAULT_VALUE = true;
 
-    private string $name;
-
     public function __construct(
         private readonly string $command,
         private readonly string $cronExpression,
-        string|null $name = null,
+        private readonly string $name,
         private readonly int $ttl = self::TTL_DEFAULT_VALUE,
         private readonly bool $autoRelease = self::AUTO_RELEASE_DEFAULT_VALUE,
     ) {
-        $this->name = $name ?? $command;
     }
 
     public function getProcess(): Process
@@ -53,7 +50,7 @@ class CliJob implements Job
     /** @inheritDoc */
     public static function fromArray(array $job): self
     {
-        $name        = array_key_exists('name', $job) ? $job['name'] : null;
+        $name        = array_key_exists('name', $job) ? $job['name'] : $job['command'];
         $ttl         = array_key_exists('ttl', $job) ? $job['ttl'] : self::TTL_DEFAULT_VALUE;
         $autoRelease = array_key_exists('autoRelease', $job) ? $job['autoRelease'] : self::AUTO_RELEASE_DEFAULT_VALUE;
 

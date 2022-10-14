@@ -42,8 +42,6 @@ class JobList
     /** @param array<array-key, array{command : string, cronExpression : string, name? : string, ttl? : int, autoRelease? : bool}> $jobs */
     public static function fromArray(array $jobs): self
     {
-        return new self(...array_map(static function (array $job) {
-            return CliJob::fromArray($job);
-        }, $jobs));
+        return new self(...array_map(static fn (array $job) => CliJob::fromArray($job), $jobs));
     }
 }

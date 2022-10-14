@@ -47,4 +47,26 @@ class JobListTest extends TestCase
 
         $sUT->push($second);
     }
+
+    public function testFromArrayEmpty(): void
+    {
+        $sUT = JobList::fromArray([]);
+
+        self::assertCount(0, $sUT->getList());
+    }
+
+    public function testFromArrayWithOneJob(): void
+    {
+        $sUT = JobList::fromArray([
+            [
+                'command' => 'ffff',
+                'cronExpression' => 'ffff',
+                'name' => 'ffff',
+                'ttl' => 100,
+                'autoRelease' => true,
+            ],
+        ]);
+
+        self::assertCount(1, $sUT->getList());
+    }
 }

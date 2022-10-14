@@ -7,6 +7,7 @@ namespace JobRunner\JobRunner\Job;
 use JobRunner\JobRunner\Exceptions\DuplicateJob;
 
 use function array_key_exists;
+use function array_map;
 use function array_values;
 
 class JobList
@@ -36,5 +37,11 @@ class JobList
     public function getList(): array
     {
         return array_values($this->jobs);
+    }
+
+    /** @param array<array-key, array{command : string, cronExpression : string, name? : string, ttl? : int, autoRelease? : bool}> $jobs */
+    public static function fromArray(array $jobs): self
+    {
+        return new self(...array_map(static fn (array $job) => CliJob::fromArray($job), $jobs));
     }
 }

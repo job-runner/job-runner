@@ -17,4 +17,7 @@ interface Job
     public function getTtl(): int;
 
     public function isAutoRelease(): bool;
+
+    /** @param array{command : string, cronExpression : string, name? : string, ttl? : int, autoRelease? : bool} $job */
+    public static function fromArray(array $job): self;
 }

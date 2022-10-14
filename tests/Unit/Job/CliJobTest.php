@@ -31,4 +31,20 @@ class CliJobTest extends TestCase
         self::assertSame(20, $sUT->getTtl());
         self::assertFalse($sUT->isAutoRelease());
     }
+
+    public function testFromArray(): void
+    {
+        $sUT = CliJob::fromArray([
+            'command' => 'toto',
+            'cronExpression' => 'hello',
+            'name' => 'myName',
+            'ttl' => 100,
+            'autoRelease' => true,
+        ]);
+
+        self::assertSame('hello', $sUT->getCronExpression());
+        self::assertSame('myName', $sUT->getName());
+        self::assertSame(100, $sUT->getTtl());
+        self::assertTrue($sUT->isAutoRelease());
+    }
 }

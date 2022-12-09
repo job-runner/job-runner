@@ -19,7 +19,7 @@
   "require-dev": {
     "doctrine/coding-standard": "^10.0",
     "infection/infection": "^0.26.16",
-    "phpunit/phpunit": "^9.5.26",
+    "phpunit/phpunit": "^9.5.27",
     "psalm/plugin-phpunit": "^0.18.4",
     "vimeo/psalm": "^5.1"
   },

@@ -53,7 +53,7 @@ class JobEventRunner implements JobStartEvent, JobSuccessEvent, JobFailEvent, Jo
         });
     }
 
-    /** @param class-string $classNam e*/
+    /** @param class-string $className */
     private function apply(string $className, callable $callable): void
     {
         foreach (array_filter($this->jobEvent, static fn (JobEvent $event) => $event instanceof $className) as $event) {

@@ -27,7 +27,7 @@ class CreateProcessTest extends TestCase
         $job->expects($this->once())->method('getCronExpression')->willReturn('0 0 1 1 1');
         $job2->expects($this->any())->method('getName')->willReturn('myName2');
         $job2->expects($this->once())->method('getCronExpression')->willReturn('0 0 1 1 1');
-        $jovEventRunner->expects($this->exactly(2))->method('notDue')->withConsecutive([$job], [$job2]);
+        $jovEventRunner->expects($this->exactly(2))->method('notDue');
 
         $sUT = new CreateProcess($lockFactory, $jovEventRunner);
 

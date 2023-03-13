@@ -3,6 +3,7 @@ vendor
 logs
 .phpcs-cache
 .phpunit.result.cache
+.phpunit.cache
 test.php
 coverage
 composer.lock

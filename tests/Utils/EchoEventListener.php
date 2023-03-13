@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace JobRunner\JobRunner\Tests\E2e;
+namespace JobRunner\JobRunner\Tests\Utils;
 
 use JobRunner\JobRunner\Event\JobEvent;
 use JobRunner\JobRunner\Event\JobFailEvent;

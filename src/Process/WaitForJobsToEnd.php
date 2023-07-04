@@ -21,23 +21,28 @@ class WaitForJobsToEnd
     public function __invoke(ProcessAndLockList $jobsToRun): void
     {
         do {
-            $running = false;
-            foreach ($jobsToRun->getList() as $process) {
-                if (! $process->getProcess()->isRunning()) {
-                    $this->release($process);
-                    $jobsToRun->remove($process);
-                    continue;
-                }
+            $jobsToRun = $this->removeAndReleaseStoppedProcess($jobsToRun);
 
-                $running = true;
-            }
-
-            if (! $running) {
-                continue;
+            if ($jobsToRun->count() === 0) {
+                return;
             }
 
             $this->clock->sleep(0.100);
-        } while ($running);
+        } while (true);
+    }
+
+    private function removeAndReleaseStoppedProcess(ProcessAndLockList $jobsToRun): ProcessAndLockList
+    {
+        foreach ($jobsToRun->getList() as $process) {
+            if ($process->getProcess()->isRunning()) {
+                continue;
+            }
+
+            $this->release($process);
+            $jobsToRun->remove($process);
+        }
+
+        return $jobsToRun;
     }
 
     private function release(ProcessAndLock $process): void

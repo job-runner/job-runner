@@ -23,7 +23,6 @@ class WaitForJobsToEnd
         do {
             $running = false;
             foreach ($jobsToRun->getList() as $process) {
-                $this->clock->sleep(0.100);
                 if (! $process->getProcess()->isRunning()) {
                     $this->release($process);
                     $jobsToRun->remove($process);
@@ -32,6 +31,12 @@ class WaitForJobsToEnd
 
                 $running = true;
             }
+
+            if (! $running) {
+                continue;
+            }
+
+            $this->clock->sleep(0.100);
         } while ($running);
     }
 

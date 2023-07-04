@@ -9,6 +9,7 @@ use JobRunner\JobRunner\Event\JobEventRunner;
 use JobRunner\JobRunner\Job\JobList;
 use JobRunner\JobRunner\Process\CreateProcess;
 use JobRunner\JobRunner\Process\WaitForJobsToEnd;
+use Symfony\Component\Clock\Clock;
 use Symfony\Component\Lock\LockFactory;
 use Symfony\Component\Lock\PersistingStoreInterface;
 use Symfony\Component\Lock\Store\FlockStore;
@@ -33,7 +34,7 @@ final class CronJobRunner implements JobRunner
 
         return new self(
             new CreateProcess(new LockFactory($persistingStore), new JobEventRunner()),
-            new WaitForJobsToEnd(new JobEventRunner()),
+            new WaitForJobsToEnd(new JobEventRunner(), new Clock()),
             $persistingStore,
         );
     }
@@ -46,7 +47,7 @@ final class CronJobRunner implements JobRunner
 
         return new self(
             new CreateProcess(new LockFactory($this->persistingStore), $jobEventRunner),
-            new WaitForJobsToEnd($jobEventRunner),
+            new WaitForJobsToEnd($jobEventRunner, new Clock()),
             $this->persistingStore,
             ...$this->jobEvent,
         );
@@ -58,7 +59,7 @@ final class CronJobRunner implements JobRunner
 
         return new self(
             new CreateProcess(new LockFactory($persistingStore), $jobEventRunner),
-            new WaitForJobsToEnd($jobEventRunner),
+            new WaitForJobsToEnd($jobEventRunner, new Clock()),
             $persistingStore,
             ...$this->jobEvent,
         );

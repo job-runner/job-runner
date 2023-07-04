@@ -7,12 +7,14 @@ namespace JobRunner\JobRunner\Process;
 use JobRunner\JobRunner\Event\JobEventRunner;
 use JobRunner\JobRunner\Process\Dto\ProcessAndLock;
 use JobRunner\JobRunner\Process\Dto\ProcessAndLockList;
+use Symfony\Component\Clock\ClockInterface;
 
 /** @internal */
 class WaitForJobsToEnd
 {
     public function __construct(
         private readonly JobEventRunner $eventRunner,
+        private readonly ClockInterface $clock,
     ) {
     }
 
@@ -21,6 +23,7 @@ class WaitForJobsToEnd
         do {
             $running = false;
             foreach ($jobsToRun->getList() as $process) {
+                $this->clock->sleep(0.100);
                 if (! $process->getProcess()->isRunning()) {
                     $this->release($process);
                     $jobsToRun->remove($process);

@@ -10,6 +10,7 @@ use JobRunner\JobRunner\Process\Dto\ProcessAndLock;
 use JobRunner\JobRunner\Process\Dto\ProcessAndLockList;
 use JobRunner\JobRunner\Process\WaitForJobsToEnd;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Clock\ClockInterface;
 use Symfony\Component\Lock\LockInterface;
 use Symfony\Component\Process\Process;
 
@@ -27,6 +28,7 @@ class WaitForJobsToEndTest extends TestCase
         $lock2              = self::createMock(LockInterface::class);
         $processAndLockList = self::createMock(ProcessAndLockList::class);
         $job                = self::createMock(Job::class);
+        $clock              = self::createMock(ClockInterface::class);
 
         $processAndLock->expects($this->any())->method('getProcess')->willReturn($process);
         $processAndLock->expects($this->once())->method('getLock')->willReturn($lock);
@@ -43,7 +45,7 @@ class WaitForJobsToEndTest extends TestCase
         $processAndLockList->expects($this->once())->method('getList')->willReturn([$processAndLock, $processAndLock2]);
         $processAndLockList->expects($this->exactly(2))->method('remove');
 
-        $sUT = new WaitForJobsToEnd($jovEventRunner);
+        $sUT = new WaitForJobsToEnd($jovEventRunner, $clock);
 
         $sUT->__invoke($processAndLockList);
     }
@@ -55,6 +57,7 @@ class WaitForJobsToEndTest extends TestCase
         $process        = self::createMock(Process::class);
         $lock           = self::createMock(LockInterface::class);
         $job            = self::createMock(Job::class);
+        $clock          = self::createMock(ClockInterface::class);
 
         $processAndLock->expects($this->any())->method('getProcess')->willReturn($process);
         $processAndLock->expects($this->any())->method('getJob')->willReturn($job);
@@ -63,7 +66,7 @@ class WaitForJobsToEndTest extends TestCase
         $process->expects($this->once())->method('getOutput')->willReturn('test');
         $process->expects($this->once())->method('isSuccessful')->willReturn(true);
 
-        $sUT = new WaitForJobsToEnd($jovEventRunner);
+        $sUT = new WaitForJobsToEnd($jovEventRunner, $clock);
 
         $jobList = new ProcessAndLockList();
         $jobList->push($processAndLock);
@@ -77,6 +80,7 @@ class WaitForJobsToEndTest extends TestCase
         $processAndLock = self::createMock(ProcessAndLock::class);
         $process        = self::createMock(Process::class);
         $job            = self::createMock(Job::class);
+        $clock          = self::createMock(ClockInterface::class);
 
         $job->expects($this->any())->method('getName')->willReturn('hello');
         $processAndLock->expects($this->any())->method('getProcess')->willReturn($process);
@@ -87,7 +91,7 @@ class WaitForJobsToEndTest extends TestCase
 
         $jovEventRunner->expects($this->once())->method('success')->with($job, 'test');
 
-        $sUT = new WaitForJobsToEnd($jovEventRunner);
+        $sUT = new WaitForJobsToEnd($jovEventRunner, $clock);
 
         $jobList = new ProcessAndLockList();
         $jobList->push($processAndLock);
@@ -102,6 +106,7 @@ class WaitForJobsToEndTest extends TestCase
         $process        = self::createMock(Process::class);
         $lock           = self::createMock(LockInterface::class);
         $job            = self::createMock(Job::class);
+        $clock          = self::createMock(ClockInterface::class);
 
         $processAndLock->expects($this->any())->method('getProcess')->willReturn($process);
         $processAndLock->expects($this->once())->method('getLock')->willReturn($lock);
@@ -112,7 +117,7 @@ class WaitForJobsToEndTest extends TestCase
 
         $jovEventRunner->expects($this->once())->method('fail')->with($job, 'test');
 
-        $sUT = new WaitForJobsToEnd($jovEventRunner);
+        $sUT = new WaitForJobsToEnd($jovEventRunner, $clock);
 
         $jobList = new ProcessAndLockList();
         $jobList->push($processAndLock);

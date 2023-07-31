@@ -9,6 +9,7 @@ use JobRunner\JobRunner\Exceptions\UnknownProcess;
 
 use function array_key_exists;
 use function array_values;
+use function count;
 
 /** @internal */
 class ProcessAndLockList
@@ -34,6 +35,11 @@ class ProcessAndLockList
     public function getList(): array
     {
         return array_values($this->jobs);
+    }
+
+    public function count(): int
+    {
+        return count($this->jobs);
     }
 
     public function remove(ProcessAndLock $process): void

@@ -6,19 +6,18 @@
 [![Latest Stable Version](https://poser.pugx.org/job-runner/job-runner/v/stable)](https://packagist.org/packages/job-runner/job-runner)
 [![License](https://poser.pugx.org/job-runner/job-runner/license)](https://packagist.org/packages/job-runner/job-runner)
 
-
-# Install
+## Install
 
 `composer require job-runner/job-runner`
 
-This cron job manager is inspired by https://github.com/jobbyphp/jobby but with various improvements
+This cron job manager is inspired by <https://github.com/jobbyphp/jobby> but with various improvements
 
 - It use `symfony/locker` so you can use the power of it
 - It use `symfony/process` instead of `exec`
 - It lock by task and not for all task
 - It has an event manager
 
-# Simple Sample
+## Simple Sample
 
 ````php
 <?php
@@ -53,7 +52,7 @@ CronJobRunner::create()->run(JobList::fromArray([
 
 ````
 
-# Using you own locker storage
+## Using you own locker storage
 
 ````php
 <?php
@@ -75,7 +74,7 @@ CronJobRunner::create()->withPersistingStore($mySymfonyLockerStore)->run($jobLis
 
 ````
 
-# Listening to events
+## Listening to events
 
 there is various of event you can listen
 
@@ -85,7 +84,7 @@ there is various of event you can listen
 - `JobRunner\JobRunner\Event\JobNotDueEvent`
 - `JobRunner\JobRunner\Event\JobStartEvent`
 
-# Adding logs with `psr/log`
+## Adding logs with `psr/log`
 
 `composer require job-runner/psr-log-adapter`
 
@@ -110,7 +109,7 @@ CronJobRunner::create()->withEventListener(new PsrLogEventListener($myLogger));-
 
 ````
 
-# Adding console output with `symfony/console`
+## Adding console output with `symfony/console`
 
 `composer require job-runner/symfony-console-adapter`
 
@@ -152,7 +151,7 @@ require 'vendor/autoload.php';
     ->run();
 ````
 
-# Adding notification output with `symfony/notifier`
+## Adding notification output with `symfony/notifier`
 
 `composer require job-runner/symfony-notifier-adapter`
 

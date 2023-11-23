@@ -21,7 +21,7 @@
     "doctrine/coding-standard": "^12.0",
     "phpunit/phpunit": "^10.4.2",
     "psalm/plugin-phpunit": "^0.18.4",
-    "vimeo/psalm": "^5.15"
+    "vimeo/psalm": "^5.16"
   },
   "autoload": {
     "psr-4": {

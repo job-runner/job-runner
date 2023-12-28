@@ -19,7 +19,7 @@
   },
   "require-dev": {
     "doctrine/coding-standard": "^12.0",
-    "phpunit/phpunit": "^10.5.3",
+    "phpunit/phpunit": "^10.5.5",
     "psalm/plugin-phpunit": "^0.18.4",
     "vimeo/psalm": "^5.18"
   },

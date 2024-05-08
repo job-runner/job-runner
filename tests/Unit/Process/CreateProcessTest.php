@@ -8,14 +8,23 @@ use JobRunner\JobRunner\Event\JobEventRunner;
 use JobRunner\JobRunner\Job\Job;
 use JobRunner\JobRunner\Job\JobList;
 use JobRunner\JobRunner\Process\CreateProcess;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Lock\LockFactory;
-use Symfony\Component\Lock\LockInterface;
+use Symfony\Component\Lock\LockInterface as OldLockInteface;
+use Symfony\Component\Lock\SharedLockInterface as NewLockInterface;
 use Symfony\Component\Process\Process;
+
+use function interface_exists;
 
 /** @covers \JobRunner\JobRunner\Process\CreateProcess */
 class CreateProcessTest extends TestCase
 {
+    private function getLock(): MockObject
+    {
+        return self::createMock(interface_exists(NewLockInterface::class) ? NewLockInterface::class : OldLockInteface::class);
+    }
+
     public function testNoNeedToRun(): void
     {
         $jovEventRunner = self::createMock(JobEventRunner::class);
@@ -43,7 +52,7 @@ class CreateProcessTest extends TestCase
         $jovEventRunner = self::createMock(JobEventRunner::class);
         $job            = self::createMock(Job::class);
         $lockFactory    = self::createMock(LockFactory::class);
-        $lock           = self::createMock(LockInterface::class);
+        $lock           = $this->getLock();
 
         $job->expects($this->once())->method('getCronExpression')->willReturn('* * * * *');
         $job->expects($this->any())->method('getName')->willReturn('myName');
@@ -67,7 +76,7 @@ class CreateProcessTest extends TestCase
         $job            = self::createMock(Job::class);
         $lockFactory    = self::createMock(LockFactory::class);
         $process        = self::createMock(Process::class);
-        $lock           = self::createMock(LockInterface::class);
+        $lock           = $this->getLock();
 
         $job->expects($this->once())->method('getCronExpression')->willReturn('* * * * *');
         $job->expects($this->any())->method('getName')->willReturn('myName');

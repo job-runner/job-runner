@@ -8,6 +8,7 @@ use JobRunner\JobRunner\Event\JobEventRunner;
 use JobRunner\JobRunner\Job\Job;
 use JobRunner\JobRunner\Job\JobList;
 use JobRunner\JobRunner\Process\CreateProcess;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Lock\LockFactory;
@@ -17,7 +18,7 @@ use Symfony\Component\Process\Process;
 
 use function interface_exists;
 
-/** @covers \JobRunner\JobRunner\Process\CreateProcess */
+#[CoversClass(CreateProcess::class)]
 class CreateProcessTest extends TestCase
 {
     private function getLock(): MockObject

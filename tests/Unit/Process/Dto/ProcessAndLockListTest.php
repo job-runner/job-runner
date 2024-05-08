@@ -9,9 +9,10 @@ use JobRunner\JobRunner\Exceptions\UnknownProcess;
 use JobRunner\JobRunner\Job\Job;
 use JobRunner\JobRunner\Process\Dto\ProcessAndLock;
 use JobRunner\JobRunner\Process\Dto\ProcessAndLockList;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
-/** @covers \JobRunner\JobRunner\Process\Dto\ProcessAndLockList */
+#[CoversClass(ProcessAndLockList::class)]
 class ProcessAndLockListTest extends TestCase
 {
     public function testOk(): void

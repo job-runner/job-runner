@@ -9,12 +9,13 @@ use JobRunner\JobRunner\Job\Job;
 use JobRunner\JobRunner\Process\Dto\ProcessAndLock;
 use JobRunner\JobRunner\Process\Dto\ProcessAndLockList;
 use JobRunner\JobRunner\Process\WaitForJobsToEnd;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Clock\ClockInterface;
 use Symfony\Component\Lock\LockInterface;
 use Symfony\Component\Process\Process;
 
-/** @covers \JobRunner\JobRunner\Process\WaitForJobsToEnd */
+#[CoversClass(WaitForJobsToEnd::class)]
 class WaitForJobsToEndTest extends TestCase
 {
     public function testOkWithTwoElements(): void

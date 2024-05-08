@@ -12,10 +12,11 @@ use JobRunner\JobRunner\Process\CreateProcess;
 use JobRunner\JobRunner\Process\Dto\ProcessAndLock;
 use JobRunner\JobRunner\Process\Dto\ProcessAndLockList;
 use JobRunner\JobRunner\Process\WaitForJobsToEnd;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Lock\PersistingStoreInterface;
 
-/** @covers \JobRunner\JobRunner\CronJobRunner */
+#[CoversClass(CronJobRunner::class)]
 class CronJobRunnerTest extends TestCase
 {
     public function testOk(): void

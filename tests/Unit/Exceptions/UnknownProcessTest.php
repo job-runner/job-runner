@@ -7,9 +7,10 @@ namespace JobRunner\JobRunner\Tests\Unit\Exceptions;
 use JobRunner\JobRunner\Exceptions\UnknownProcess;
 use JobRunner\JobRunner\Job\Job;
 use JobRunner\JobRunner\Process\Dto\ProcessAndLock;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
-/** @covers \JobRunner\JobRunner\Exceptions\UnknownProcess */
+#[CoversClass(UnknownProcess::class)]
 class UnknownProcessTest extends TestCase
 {
     public function testOk(): void

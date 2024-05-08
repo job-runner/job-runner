@@ -8,9 +8,10 @@ use JobRunner\JobRunner\CronJobRunner;
 use JobRunner\JobRunner\Job\CliJob;
 use JobRunner\JobRunner\Job\JobList;
 use JobRunner\JobRunner\Tests\Utils\EchoEventListener;
+use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\TestCase;
 
-/** @coversNothing */
+#[CoversNothing]
 class TestCliJob extends TestCase
 {
     public function testOk(): void

@@ -5,9 +5,10 @@ declare(strict_types=1);
 namespace JobRunner\JobRunner\Tests\Unit\Job;
 
 use JobRunner\JobRunner\Job\CliJob;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
-/** @covers \JobRunner\JobRunner\Job\CliJob */
+#[CoversClass(CliJob::class)]
 class CliJobTest extends TestCase
 {
     public function testOkWithDefaultValue(): void

@@ -6,9 +6,10 @@ namespace JobRunner\JobRunner\Tests\Unit\Exceptions;
 
 use JobRunner\JobRunner\Exceptions\DuplicateJob;
 use JobRunner\JobRunner\Job\Job;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
-/** @covers \JobRunner\JobRunner\Exceptions\DuplicateJob */
+#[CoversClass(DuplicateJob::class)]
 class DuplicateJobTest extends TestCase
 {
     public function testOk(): void

@@ -6,9 +6,10 @@ namespace JobRunner\JobRunner\Tests\Unit\Exceptions;
 
 use JobRunner\JobRunner\Exceptions\NotDueJob;
 use JobRunner\JobRunner\Job\Job;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
-/** @covers \JobRunner\JobRunner\Exceptions\NotDueJob */
+#[CoversClass(NotDueJob::class)]
 class NotDueJobTest extends TestCase
 {
     public function testOk(): void

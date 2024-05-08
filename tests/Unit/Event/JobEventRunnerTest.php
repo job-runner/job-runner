@@ -11,9 +11,10 @@ use JobRunner\JobRunner\Event\JobNotDueEvent;
 use JobRunner\JobRunner\Event\JobStartEvent;
 use JobRunner\JobRunner\Event\JobSuccessEvent;
 use JobRunner\JobRunner\Job\Job;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
-/** @covers \JobRunner\JobRunner\Event\JobEventRunner */
+#[CoversClass(JobEventRunner::class)]
 class JobEventRunnerTest extends TestCase
 {
     public function testOk(): void

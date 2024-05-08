@@ -89,4 +89,3 @@ there is various of event you can listen
 - [job-runner/psr-log-adapter](https://github.com/job-runner/psr-log-adapter) Adapter to logs events in psr/log
 - [job-runner/symfony-console-adapter](https://github.com/job-runner/symfony-console-adapter) Adapter to logs events in symfony/console
 - [job-runner/symfony-notifier-adapter](https://github.com/job-runner/symfony-notifier-adapter) Adapter to logs events in symfony/notifier
-

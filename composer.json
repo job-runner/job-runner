@@ -14,7 +14,7 @@
     "php": "~8.2.0 || ~8.3.0",
     "dragonmantank/cron-expression": "^3.3.3",
     "symfony/clock": "^6.3 || ^7.0",
-    "symfony/lock": "^5.0 || ^6.0 || ^7.0",
+    "symfony/lock": "^7.0.7",
     "symfony/process": "^5.0 || ^6.0 || ^7.0"
   },
   "require-dev": {

@@ -11,40 +11,40 @@ endif
 is-valid: test cs psalm
 
 dup:
-	docker-compose up -d
+	docker compose up -d
 
 kill:
-	docker-compose rm -f -s
+	docker compose rm -f -s
 
 
 test:
-	docker-compose exec php php -dpcov.enabled=0 vendor/bin/phpunit $(COMMAND_ARGS)
+	docker compose exec php php -dpcov.enabled=0 vendor/bin/phpunit $(COMMAND_ARGS)
 
 cs:
-	docker-compose exec php ./vendor/bin/phpcs
+	docker compose exec php ./vendor/bin/phpcs
 
 cbf:
-	docker-compose exec php ./vendor/bin/phpcbf
+	docker compose exec php ./vendor/bin/phpcbf
 
 psalm:
-	docker-compose exec php ./vendor/bin/psalm
+	docker compose exec php ./vendor/bin/psalm
 
 infections:
-	docker-compose exec php ./vendor/bin/infection -s
+	docker compose exec php ./vendor/bin/infection -s
 
 coverage: dup
-	docker-compose exec php ./vendor/bin/phpunit --coverage-html coverage
+	docker compose exec php ./vendor/bin/phpunit --coverage-html coverage
 
 update: dup
-	docker-compose exec php composer update
+	docker compose exec php composer update
 
 install: dup
-	docker-compose exec php composer install
+	docker compose exec php composer install
 
 
 
 composer-valid: dup
-	docker-compose exec php composer validate
+	docker compose exec php composer validate
 
 login:
-	docker-compose exec php sh
+	docker compose exec php sh

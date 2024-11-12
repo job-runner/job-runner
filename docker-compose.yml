@@ -1,6 +1,6 @@
 services:
     php:
-        image: cube43/docker-apache2-php:8.3
+        image: cube43/docker-apache2-php:8.4
         restart: always
         volumes:
             - .:/var/www

@@ -3,7 +3,7 @@
     {
       "name": "PhpStan",
       "job": {
-        "php": "8.2",
+        "php": "8.3",
         "dependencies": "latest",
         "command": "vendor/bin/phpstan analyse"
       }

@@ -20,7 +20,7 @@
   "require-dev": {
     "doctrine/coding-standard": "^14.0",
     "phpstan/phpstan": "^2.1.34",
-    "phpunit/phpunit": "^12.5.5"
+    "phpunit/phpunit": "^12.5.7"
   },
   "autoload": {
     "psr-4": {
